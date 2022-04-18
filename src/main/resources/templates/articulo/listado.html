@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Mi Ferreteria</title>
-        <meta charset="UTF-8"/>
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="plantilla/plantilla :: head">
+        <title>Mi Ferretería</title>
     </head>
     <body>
         <header th:replace="plantilla/plantilla :: header"/>
         <div class="contenido">    
         <h2>Lista de articulos</h2>
         
-        <a th:href="@{/articulo/nuevo}">Nuevo cliente</a>
+        <a th:href="@{/articulo/nuevo}">Nuevo artículo</a>
         <di th:if="${articulos != null and !articulos.empty}">
         <table border="1">
             <thead>
@@ -20,16 +20,14 @@
                     <th>Existencia</th>
                     <th>Activa</th>
 
-        
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="cliente : ${clientes}">
+                <tr th:each="articulo : ${articulos}">
                     <td th:text="${articulo.descripcion}"></td>
                     <td th:text="${articulo.precio}"></td>
-                    <td th:text="${articulo.existencia}" style="text-align: center"></td>
+                    <td th:text="${articulo.existencias}" style="text-align: center"></td>
                     <td><input type="checkbox" name="activo" th:checked="${articulo.activo}" disabled="true"></td>
-                    <td th:text="${articulo.}"></td>
                     <td><a th:href="@{/articulo/eliminar/} + ${articulo.idArticulo}">Eliminar</a></td>
                     <td><a th:href="@{/articulo/modificar/} + ${articulo.idArticulo}">Modificar</a></td>
                 </tr>

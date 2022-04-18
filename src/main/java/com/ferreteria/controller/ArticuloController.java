@@ -3,6 +3,7 @@ package com.ferreteria.controller;
 import com.ferreteria.dao.ArticuloDao;
 import com.ferreteria.model.Articulo;
 import com.ferreteria.services.ArticuloService;
+import com.ferreteria.services.CategoriaService;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class ArticuloController {
     @Autowired
     private ArticuloService articuloService;
     
+    @Autowired
+    private CategoriaService categoriaService;
+    
     @GetMapping("/articulo/listado")
     public String inicio(Model model){
         var articulos = articuloService.getArticulos(false);
@@ -27,7 +31,9 @@ public class ArticuloController {
     }
     
     @GetMapping("/articulo/nuevo")
-    public String nuevoArticulo(Articulo articulo){
+    public String nuevoArticulo(Articulo articulo,Model model){
+        var categorias = categoriaService.getCategorias(true);
+        model.addAttribute("categorias",categorias);
         return "articulo/modificar";
     }
     

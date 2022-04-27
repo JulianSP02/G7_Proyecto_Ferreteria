@@ -3,81 +3,27 @@
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
     <head th:replace="plantilla/plantilla :: head">
-        <title>Mi Ferretería</title>
+        <title>Mi Ferreteria</title>
     </head>
     <body>
         <header th:replace="plantilla/plantilla :: header"/>
         
-        <div class="contenido">
-        <h2>Últimas ofertas disponibles para usted</h2>
-        <br>
-        <div>
-        <article>
-            <header><i>Escalera de aluminio 5m</i></header>
-            
-            <figure>
-                <img src="images/escalera.jpg" alt="" width="200"/>
-                <figcaption><strong>40% de descuento!</strong></figcaption>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        <br>
-        <article>
-            <header><i>Tornillo de estufa milimétrico</i></header>
-            
-            <figure>
-                <img src="images/tornillo.jpg" alt="" width="200"/>
-                <figcaption><strong>15% de descuento!</strong></figcaption>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        <br>
-        <br>
-        
-        <h2>Los hogares más limpios</h2>
-        <br>
-            
-        <div>
-        <article>
-            <header><i>Esponja cero rayas de doble uso</i></header>
-            
-            <figure>
-                <img src="images/esponjas.jpg" alt="" width="200"/>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        <br>
-        <article>
-            <header><i>Jabón antibacterial</i></header>
-            <img src="images/jabon.jpg" alt="" width="200"/>
-            <figure>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        <br>
-        <br>
-        
-        <h2>Decore sus jardines con lo mejor</h2>
-        <br>
-            
-        <div>
-        <article>
-            <header><i>Parasol Shanghai</i></header>
-            
-            <figure>
-                <img src="images/parasol.jpg" alt="" width="200"/>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        <br>
-        <article>
-            <header><i>Rollo de alambre negra 15m</i></header>
-            <img src="images/alambre.jpg" alt="" width="200"/>
-            <figure>
-            </figure>
-            <footer>Agregar al carrito</footer>
-        </article>
-        </div>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Artículos</h2>            
+            <div class="row row-cols-5" th:if="${articulos != null and !articulos.empty}">
+                <div class="card" th:each="articulo : ${articulos}" >
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">[[${articulo.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <a class="card-link" th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a>
+                        <p class="card-text">[[${articulo.detalle}]]</p>                        
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${articulos == null or articulos.empty}"  th:text="#{articulo.no_mostrar}">
+                No tenemos lista de articulos que mostrar...
+            </div>
         </div>
         <footer th:replace="plantilla/plantilla :: footer"/>
     </body>

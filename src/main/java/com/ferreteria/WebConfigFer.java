@@ -23,7 +23,7 @@ public class WebConfigFer implements WebMvcConfigurer {
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor(){
         var lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
+        lci.setParamName("language");
         return lci;
     }
     

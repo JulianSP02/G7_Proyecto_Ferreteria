@@ -47,6 +47,7 @@
                                         <tr th:each="cliente, contador : ${clientes}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${cliente.nombre} + ' ' + ${cliente.apellidos}]]</td>
+                                            <td>[[${cliente.correo}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
                                                    class="btn btn-danger">
@@ -90,7 +91,7 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
+                        <div class="modal-header bg-warning text-white">
                             <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 

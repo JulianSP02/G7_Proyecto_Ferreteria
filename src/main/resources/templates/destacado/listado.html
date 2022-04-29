@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="plantilla/plantilla :: head">
+        <title>Mi Ferretería</title>
+    </head>
+    <body>
+        <header th:replace="plantilla/plantilla :: header"/>
+        <div class="contenido">    
+        <h2>Lista de destacados</h2>
+        
+        <a th:href="@{/destacado/nuevo}">Nuevas Destacados</a>
+        <div th:if="${destacados != null and !destacados.empty}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Existencia</th>
+                    <th>Activa</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="destacado : ${destacados}">
+                    <td th:text="${destacado.descripcion}"></td>
+                    <td th:text="${destacado.precio}"></td>
+                    <td th:text="${destacado.existencias}" style="text-align: center"></td>
+                    <td><input type="checkbox" name="activo" th:checked="${destacado.activo}" disabled="true"></input></td>
+                    <td><a th:href="@{/destacado/eliminar/} + ${destacado.idDestacado}">Eliminar</a></td>
+                    <td><a th:href="@{/destacado/modificar/} + ${destacado.idDestacado}">Modificar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${destacados == null or destacados.empty}">
+            
+        </div>
+        </div>
+        <footer th:replace="plantilla/plantilla :: footer"/>
+        </div>
+    </body>
+</html>

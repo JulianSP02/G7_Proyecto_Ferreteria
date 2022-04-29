@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="plantilla/plantilla :: head">
+        <title>Mi Ferretería</title>
+    </head>
+    <body>
+        <header th:replace="plantilla/plantilla :: header"/>
+        <div class="contenido">    
+            <h2>Lista de ofertas</h2>
+
+            <a th:href="@{/oferta/nuevo}">Nuevas Ofertas</a>
+            <div th:if="${ofertas != null and !ofertas.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Existencia</th>
+                            <th>Activa</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="oferta : ${ofertas}">
+                            <td th:text="${oferta.descripcion}"></td>
+                            <td th:text="${oferta.precio}"></td>
+                            <td th:text="${oferta.existencias}" style="text-align: center"></td>
+                            <td><input type="checkbox" name="activo" th:checked="${oferta.activo}" disabled="true"></input></td>
+                            <td><a th:href="@{/oferta/eliminar/} + ${oferta.idOferta}">Eliminar</a></td>
+                            <td><a th:href="@{/oferta/modificar/} + ${oferta.idOferta}">Modificar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div th:if="${ofertas == null or ofertas.empty}">
+
+                </div>
+            </div>
+            <footer th:replace="plantilla/plantilla :: footer"/>
+        </div>
+    </body>
+</html>

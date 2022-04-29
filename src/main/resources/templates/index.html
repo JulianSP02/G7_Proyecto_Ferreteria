@@ -7,17 +7,23 @@
     </head>
     <body>
         <header th:replace="plantilla/plantilla :: header"/>
-        
+        <section class="py-4 mb-4 bg-light">
+            <img src="recursos.images/Encabezado.png" alt=""/>
+            <img src="Encabezado.png" alt="" height="360" width="1080" style="padding-left: 21.5%"/>
+        </section>
+        <br></br>
         <div class="container">
-            <h2 th:text="#{index.titulo}">Nuestros Artículos</h2>            
+            <h2 th:text="#{index.tituloArticulo}">Nuestros Artículos</h2>            
             <div class="row row-cols-5" th:if="${articulos != null and !articulos.empty}">
                 <div class="card" th:each="articulo : ${articulos}" >
-                    <img src="/media/holder.jpg" class="card-img-top" alt="Holder"/>
+                    
                     <div class="card-body">
-                        <h5 class="card-title">[[${articulo.descripcion}]]</h5>
-                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <h5 class="card-title text-center">[[${articulo.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <img src="/static/recursos/images/unknown.png" alt="" height="205" width="205"/>
+                        <br></br>
                         <a class="card-link" th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a>
-                        <p class="card-text">[[${articulo.detalle}]]</p>                        
+                        <p class="card-text" style="">[[${articulo.detalle}]]</p>                        
                     </div>
                 </div>                
             </div>
@@ -25,6 +31,51 @@
                 No tenemos lista de articulos que mostrar...
             </div>
         </div>
+        
+        <br></br>        
+        <div class="container">
+            <h2 th:text="#{index.tituloDestacado}">Nuestros Destacados</h2>            
+            <div class="row row-cols-5" th:if="${destacados != null and !destacados.empty}">
+                <div class="card" th:each="destacado : ${destacados}" >
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">[[${destacado.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">[[${new java.text.DecimalFormat('¢#,##0.00').format(destacado.precio)}]]</h6>
+                        <img src="/static/recursos/images/unknown.png" alt="" height="205" width="205"/>
+                        <br></br>
+                        <a class="card-link" th:href="@{/carrito/agregar/} + ${destacado.idDestacado}">[[#{destacado.comprar}]]</a>
+                        <p class="card-text">[[${destacado.detalle}]]</p>                        
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${destacados == null or destacados.empty}"  th:text="#{destacado.no_mostrar}">
+                No tenemos lista de productos destacados que mostrar...
+            </div>
+        </div>
+
+        <br></br>     
+        <div class="container">
+            <h2 th:text="#{index.tituloOferta}">Nuestros Ofertas</h2>            
+            <div class="row row-cols-5" th:if="${ofertas != null and !ofertas.empty}">
+                <div class="card" th:each="oferta : ${ofertas}" >
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">[[${oferta.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">[[${new java.text.DecimalFormat('¢#,##0.00').format(oferta.precio)}]]</h6>
+                        <img src="/static/recursos/images/unknown.png" alt="" height="205" width="205"/>
+                        <br></br>
+                        <a class="card-link" th:href="@{/carrito/agregar/} + ${oferta.idOferta}">[[#{oferta.comprar}]]</a>
+                        <p class="card-text">[[${oferta.detalle}]]</p>                        
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${ofertas == null or ofertas.empty}"  th:text="#{oferta.no_mostrar}">
+                No tenemos lista de ofertas que mostrar...
+            </div>
+        </div>
+        
+        <br></br>     
+               
         <footer th:replace="plantilla/plantilla :: footer"/>
     </body>
 </html>

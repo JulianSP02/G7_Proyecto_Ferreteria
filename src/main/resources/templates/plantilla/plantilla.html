@@ -33,6 +33,16 @@
                             <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}"
                                    th:text="Articulos">Articulos</a>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/destacado/listado}"
+                                   th:text="Destacados">Destacados</a>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/oferta/listado}"
+                                   th:text="Ofertas">Ofertas</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/contacto/listado}"
+                                   th:text="Contactenos">Contactenos</a>
                             </li>
                         </ul>
                         <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">

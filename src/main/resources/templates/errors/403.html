@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:fragment="plantilla/plantilla :: head">
+        <title>Mi Ferreteria</title>
+    </head>
+    <body>       
+        <div class="contenido">
+            <h2>[[#{e403.titulo}]]</h2>
+            <p>[[#{e403.texto}]]</p>
+            <a th:href="@{/}">[[#{accion.regresar}]]</a>
+        </div>        
+    </body>
+</html>
